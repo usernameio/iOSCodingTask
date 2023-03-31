@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WeatherProtocol {
-    func getWeatherData()
+    func getWeatherData(completion: @escaping (Result<Void, APIClient.RequestError>) -> Void)
 }
 
 struct APIClient {

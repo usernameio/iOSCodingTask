@@ -14,8 +14,7 @@ enum EndpointCase {
     var url: String {
         switch self {
         case .getForecast:
-            return
-            "http://api.weatherapi.com/v1/forecast.json?key=522db6a157a748e2996212343221502&q=London&days=7&aqi=no&alerts=no"
+            return "http://api.weatherapi.com/v1/forecast.json?key=522db6a157a748e2996212343221502&q=Paris&days=7&aqi=no&alerts=no"
         }
     }
 }

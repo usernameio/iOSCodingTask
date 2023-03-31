@@ -9,7 +9,7 @@ import Foundation
 
 class ForecastModel: WeatherProtocol {
     // MARK: - Properties
-    private var sevenDaysForecast = [DayModel]()
+    private var forecast = [DayModel]()
     private var apiClient: APIClient? = ServiceLocator.shared.getService()
     
     // MARK: - Methods
@@ -21,25 +21,32 @@ class ForecastModel: WeatherProtocol {
                 maxTempC: sampleDay.day.maxTempC,
                 date: sampleDay.date
             )
-            sevenDaysForecast.append(day)
+            forecast.append(day)
         }
     }
     
     /// Triggers a request to get the forecast
-    /// - Parameter completion: return result of type WeatherDTO
-    func getWeatherData() {
+    /// - Parameter completion: return VOID
+    func getWeatherData(completion: @escaping (Result<Void, APIClient.RequestError>) -> Void) {
         apiClient?.getRequest(
             type: WeatherDTO.self,
             endpoint: .getForecast
-        ) { result in
+        ) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let forecast):
-                    self.setupForecast(data: forecast)
+                    self?.setupForecast(data: forecast)
+                    completion(.success(()))
                 case .failure(let failure):
-                    print(failure)
+                    print(failure.title)
                 }
             }
         }
+    }
+    
+    /// Provides forecast
+    /// - Returns: returns an array of DayModel to provides data for forecast
+    func getForecastData() -> [DayModel] {
+        forecast
     }
 }

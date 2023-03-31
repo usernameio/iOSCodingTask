@@ -9,9 +9,9 @@ import Foundation
 
 class CityModel: WeatherProtocol {
     // MARK: - Properties
-    private var country: String?
-    private var name: String?
-    private var localDateTime: String?
+    var country: String?
+    var name: String?
+    var localDateTime: String?
     private var apiClient: APIClient? = ServiceLocator.shared.getService()
     
     // MARK: - Initializers
@@ -30,7 +30,8 @@ class CityModel: WeatherProtocol {
     }
     
     /// Triggers a request to get the forecast
-    func getWeatherData() {
+    /// - Parameter completion: returns Void
+    func getWeatherData(completion: @escaping (Result<Void, APIClient.RequestError>) -> Void) {
         apiClient?.getRequest(
             type: WeatherDTO.self,
             endpoint: .getForecast
@@ -39,8 +40,9 @@ class CityModel: WeatherProtocol {
                 switch result {
                 case .success(let data):
                     self?.setupCity(data: data)
+                    completion(.success(()))
                 case .failure(let failure):
-                    print(failure)
+                    print(failure.title)
                 }
             }
         }
