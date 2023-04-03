@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct WeatherDTO: Codable {
+typealias DTOModel = Codable
+
+struct WeatherDTO: DTOModel {
     // MARK: - Properties
     let location: LocationDTO
     let current: CurrentDTO

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ForecastDTO: Codable {
+struct ForecastDTO: DTOModel {
     // MARK: - Properties
     let forecastDay: [ForecastDayDTO]
     

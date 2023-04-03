@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DayDTO: Codable {
+struct DayDTO: DTOModel {
     // MARK: - Properties
     var condition: ConditionDTO
     var minTempC: Double

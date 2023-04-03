@@ -7,28 +7,29 @@
 
 import Foundation
 
-protocol WeatherProtocol {
-    func getWeatherData(completion: @escaping (Result<Void, APIClient.RequestError>) -> Void)
+protocol URLSessionDataTaskProtocol {
+    func resume()
 }
 
-struct APIClient {
-    //MARK: - Properties
-    enum RequestError: Error {
-        case dataTaskError
-        case badResponse
-        case emptyData
-        case decodeError
-        case unknownError
-        
-        var title: String {
-            switch self {
-            case .dataTaskError: return "DataTask error."
-            case .badResponse: return "Empty Response."
-            case .emptyData: return "Empty Data."
-            case .decodeError: return "JSON could not be decoded."
-            case .unknownError: return "Something went wrong."
-            }
-        }
+protocol URLSessionProtocol {
+    typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
+    
+    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
+}
+
+protocol RequestExecutableProtocol: AnyObject {
+    func getRequest(
+        endpoint: String,
+        completionHandler: @escaping (Result<WeatherDTO, RequestError>) -> Void
+    )
+}
+
+class APIClient: RequestExecutableProtocol {
+    
+    private let session: URLSessionProtocol
+    
+    init(session: URLSessionProtocol) {
+        self.session = session
     }
     
     /// Triggers a call to server with pre-specified type of result (Generic) and endpoint)
@@ -36,18 +37,18 @@ struct APIClient {
     ///   - type: Generic Type
     ///   - endpoint: URL
     ///   - completionHandler: result of call
-    func getRequest<U: Codable>(
-        type: U.Type = U.self,
-        endpoint: EndpointCase,
-        completionHandler: @escaping (Result<U, RequestError>) -> Void
+    func getRequest(
+        endpoint: String,
+        completionHandler: @escaping (Result<WeatherDTO, RequestError>) -> Void
     ) {
-        guard let url = URL(string: endpoint.url) else {
+        guard let url = URL(string: endpoint) else {
             return
         }
         
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        session.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 completionHandler(.failure(.dataTaskError))
                 return
@@ -65,11 +66,19 @@ struct APIClient {
             
             do {
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(U.self, from: data)
-                completionHandler(.success(jsonData)) 
+                let jsonData = try decoder.decode(WeatherDTO.self, from: data)
+                completionHandler(.success(jsonData))
             } catch {
                 completionHandler(.failure(.decodeError))
             }
         }.resume()
     }
 }
+
+extension URLSession: URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+        return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask
+    }
+}
+
+extension URLSessionDataTask: URLSessionDataTaskProtocol {}

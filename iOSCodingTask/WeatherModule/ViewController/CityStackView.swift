@@ -32,7 +32,7 @@ class CityStackView: UIStackView {
         countryTextView.translatesAutoresizingMaskIntoConstraints = false
         cityTextView.translatesAutoresizingMaskIntoConstraints = false
         localDateAndTimeTextView.translatesAutoresizingMaskIntoConstraints = false
-         
+        
         addArrangedSubview(countryTextView)
         addArrangedSubview(cityTextView)
         addArrangedSubview(localDateAndTimeTextView)

@@ -33,7 +33,7 @@ class ForecastStackView: UIStackView {
         minTempC.translatesAutoresizingMaskIntoConstraints = false
         maxTempC.translatesAutoresizingMaskIntoConstraints = false
         date.translatesAutoresizingMaskIntoConstraints = false
-         
+        
         addArrangedSubview(currentConditionImageView)
         addArrangedSubview(minTempC)
         addArrangedSubview(maxTempC)

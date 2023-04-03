@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentDTO: Codable {
+struct CurrentDTO: DTOModel {
     // MARK: - Properties
     let condition: ConditionDTO
 }

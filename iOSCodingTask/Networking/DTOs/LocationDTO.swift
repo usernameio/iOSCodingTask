@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocationDTO: Codable {
+struct LocationDTO: DTOModel {
     // MARK: - Properties
     let name: String
     let country: String

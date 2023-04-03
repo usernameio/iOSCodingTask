@@ -10,8 +10,8 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     // MARK: - Properties
-    private var cityModel = CityModel()
-    private var forecastModel = ForecastModel()
+    private var cityModel = CityModel(requestExecutableProtocol: APIClient(session: URLSession.shared))
+    private var forecastModel = ForecastModel(requestExecutableProtocol: APIClient(session: URLSession.shared))
     private var contentStackView = ContentStackView()
     
     // MARK: - Lifecycle
@@ -29,7 +29,7 @@ class WeatherViewController: UIViewController {
                 switch result {
                 case .success( _):
                     self?.contentStackView.setupForecastData(
-                        data: self?.forecastModel.getForecastData() ?? [DayModel]()
+                        data: self?.forecastModel.getForecastDays() ?? [DayModel]()
                     )
                 case .failure(let error):
                     print(error.localizedDescription)

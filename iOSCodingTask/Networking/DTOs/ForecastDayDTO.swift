@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ForecastDayDTO: Codable {
+struct ForecastDayDTO: DTOModel {
     // MARK: - Properties
     var date: String
     var day: DayDTO

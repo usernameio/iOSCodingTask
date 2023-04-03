@@ -9,8 +9,15 @@ import Foundation
 
 class ForecastModel: WeatherProtocol {
     // MARK: - Properties
-    private var forecast = [DayModel]()
-    private var apiClient: APIClient? = ServiceLocator.shared.getService()
+    var forecast = [DayModel]()
+    var requestExecutableProtocol: RequestExecutableProtocol
+    
+    // MARK: - Initializers
+    init(
+        requestExecutableProtocol: RequestExecutableProtocol
+    ) {
+        self.requestExecutableProtocol = requestExecutableProtocol
+    }
     
     // MARK: - Methods
     private func setupForecast(data: WeatherDTO) {
@@ -26,19 +33,16 @@ class ForecastModel: WeatherProtocol {
     }
     
     /// Triggers a request to get the forecast
-    /// - Parameter completion: return VOID
-    func getWeatherData(completion: @escaping (Result<Void, APIClient.RequestError>) -> Void) {
-        apiClient?.getRequest(
-            type: WeatherDTO.self,
-            endpoint: .getForecast
-        ) { [weak self] result in
+    /// - Parameter completion: return Void
+    func getWeatherData(completion: @escaping (Result<Void, RequestError>) -> Void) {
+        requestExecutableProtocol.getRequest(endpoint: EndpointCase.getForecast.url) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let forecast):
                     self?.setupForecast(data: forecast)
                     completion(.success(()))
                 case .failure(let failure):
-                    print(failure.title)
+                    completion(.failure(failure))
                 }
             }
         }
@@ -46,7 +50,7 @@ class ForecastModel: WeatherProtocol {
     
     /// Provides forecast
     /// - Returns: returns an array of DayModel to provides data for forecast
-    func getForecastData() -> [DayModel] {
+    func getForecastDays() -> [DayModel] {
         forecast
     }
 }

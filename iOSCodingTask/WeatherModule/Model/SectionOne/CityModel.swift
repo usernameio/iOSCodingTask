@@ -7,18 +7,28 @@
 
 import Foundation
 
+protocol WeatherProtocol {
+    func getWeatherData(completion: @escaping (Result<Void, RequestError>) -> Void)
+}
+
 class CityModel: WeatherProtocol {
     // MARK: - Properties
     var country: String?
     var name: String?
     var localDateTime: String?
-    private var apiClient: APIClient? = ServiceLocator.shared.getService()
+    private var requestExecutableProtocol: RequestExecutableProtocol
     
     // MARK: - Initializers
-    init(country: String? = nil, name: String? = nil, localDateTime: String? = nil) {
+    init(
+        country: String? = nil,
+        name: String? = nil,
+        localDateTime: String? = nil,
+        requestExecutableProtocol: RequestExecutableProtocol
+    ) {
         self.country = country
         self.name = name
         self.localDateTime = localDateTime
+        self.requestExecutableProtocol = requestExecutableProtocol
     }
     
     // MARK: - Methods
@@ -31,18 +41,15 @@ class CityModel: WeatherProtocol {
     
     /// Triggers a request to get the forecast
     /// - Parameter completion: returns Void
-    func getWeatherData(completion: @escaping (Result<Void, APIClient.RequestError>) -> Void) {
-        apiClient?.getRequest(
-            type: WeatherDTO.self,
-            endpoint: .getForecast
-        ) { [weak self] result in
+    func getWeatherData(completion: @escaping (Result<Void, RequestError>) -> Void) {
+        requestExecutableProtocol.getRequest(endpoint: EndpointCase.getForecast.url) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self?.setupCity(data: data)
                     completion(.success(()))
                 case .failure(let failure):
-                    print(failure.title)
+                    completion(.failure(failure))
                 }
             }
         }
