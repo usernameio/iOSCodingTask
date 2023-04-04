@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ForecastDTO: DTOModel {
+struct ForecastForThreeDaysModel: DTOModel {
     // MARK: - Properties
-    let forecastDay: [ForecastDayDTO]
+    var forecastDay = [ForecastDayModel]()
     
     enum CodingKeys: String, CodingKey {
         case forecastDay = "forecastday"
-    } 
+    }
 }

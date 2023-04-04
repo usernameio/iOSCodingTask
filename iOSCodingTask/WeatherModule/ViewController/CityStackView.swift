@@ -14,17 +14,51 @@ class CityStackView: UIStackView {
     private var localDateAndTimeTextView = UILabel()
     
     // MARK: - Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureCityScreen()
+    init() {
+        super.init(frame: .zero)
+        configureCityScreen(
+            city: cityTextView,
+            country: countryTextView,
+            localTime: localDateAndTimeTextView
+        )
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Methods
-    private func configureCityScreen() {
+    /// Setup the data provided from the server to fill the city Labels
+    /// - Parameters:
+    ///   - country: current country
+    ///   - city: current city
+    ///   - localTime: current date and time
+    func setupLocationText(
+        country: String,
+        city: String,
+        localTime: String
+    ) {
+        countryTextView.text = country
+        countryTextView.font = .systemFont(ofSize: 20.0)
+        cityTextView.text = city
+        cityTextView.font = .systemFont(ofSize: 20.0)
+        localDateAndTimeTextView.text = localTime
+        localDateAndTimeTextView.font = .systemFont(ofSize: 20.0)
+    }
+}
+
+extension CityStackView {
+    
+    func configureCityScreen(
+        city: UILabel,
+        country: UILabel,
+        localTime: UILabel
+    ) {
+        guard city.superview == nil ||
+        country.superview == nil ||
+        localTime.superview == nil else {
+            return
+        }
+        
         axis = .vertical
         alignment = .center
         
@@ -48,19 +82,5 @@ class CityStackView: UIStackView {
             countryTextView.topAnchor.constraint(equalTo: topAnchor),
             localDateAndTimeTextView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-    
-    /// Setup content for UITextField after the data is fetched
-    /// - Parameters:
-    ///   - country: country of the current location
-    ///   - city: city of current location
-    ///   - localDateAndTime: current location local time and date
-    func setupText(country: String, city: String, localDateAndTime: String) {
-        countryTextView.text = country
-        countryTextView.font = .systemFont(ofSize: 20.0)
-        cityTextView.text = city
-        cityTextView.font = .systemFont(ofSize: 20.0)
-        localDateAndTimeTextView.text = localDateAndTime
-        localDateAndTimeTextView.font = .systemFont(ofSize: 20.0)
     }
 }

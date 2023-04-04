@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct ForecastDayDTO: DTOModel {
+struct ForecastDayModel: DTOModel {
     // MARK: - Properties
-    var date: String
-    var day: DayDTO
+    var date = String()
+    var day = SingleDayModel()
     
     enum CodingKeys: String, CodingKey {
         case date
         case day
-    } 
+    }
 }

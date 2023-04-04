@@ -6,16 +6,24 @@
 //
 
 import UIKit
+import Combine
 
 class ContentStackView: UIStackView {
     // MARK: - Properties
+    private var weatherVM = WeatherViewModel(requestExecutableProtocol: APIClient(session: URLSession.shared))
+    private var cancellables = Set<AnyCancellable>()
     private var cityStackView = CityStackView()
     private var forecastScrollView = ForecastScrollView()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        configureCitySection(
+            cityStackView: cityStackView,
+            forecastScrollView: forecastScrollView
+        )
+        fetchLocationData()
+        loadWeatherData()
     }
     
     required init(coder: NSCoder) {
@@ -23,18 +31,36 @@ class ContentStackView: UIStackView {
     }
     
     // MARK: - Methods
-    private func configureView() {
+    private func fetchLocationData() {
+        weatherVM.getWeatherData()
+    }
+    
+    private func loadWeatherData() {
+        self.weatherVM.$weatherModel.sink { model in
+            self.cityStackView.setupLocationText(
+                country: model.location.country,
+                city: model.location.name,
+                localTime: model.location.localtime
+            )
+            
+            self.forecastScrollView.loadForecastData(forecast: model.forecast)
+        }
+        .store(in: &cancellables)
+    }
+}
+
+extension ContentStackView {
+    
+    func configureCitySection(cityStackView: UIStackView, forecastScrollView: UIScrollView) {
+        guard cityStackView.superview == nil,
+              forecastScrollView.superview == nil else {
+            return
+        }
+        
         axis = .vertical
         distribution = .fillEqually
         alignment = .center
         backgroundColor = .systemYellow
-        configureCitySection()
-    }
-    
-    private func configureCitySection() {
-        guard cityStackView.superview == nil else {
-            return
-        }
         
         forecastScrollView.backgroundColor = .systemGreen
         translatesAutoresizingMaskIntoConstraints = false
@@ -58,20 +84,5 @@ class ContentStackView: UIStackView {
             forecastScrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             forecastScrollView.topAnchor.constraint(equalTo: cityStackView.bottomAnchor)
         ])
-    }
-    
-    /// Setup the content of the City where user is currently located
-    /// - Parameters:
-    ///   - country: country of the location
-    ///   - city: city of the location
-    ///   - localDateAndTime: local date and time
-    func setupCityData(country: String, city: String, localDateAndTime: String) {
-        cityStackView.setupText(country: country, city: city, localDateAndTime: localDateAndTime)
-    }
-    
-    /// Setup the forecast data to display
-    /// - Parameter data: data to display
-    func setupForecastData(data: [DayModel]) {
-        forecastScrollView.loadForecastData(forecast: data)
     }
 }

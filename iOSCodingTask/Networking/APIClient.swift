@@ -20,7 +20,7 @@ protocol URLSessionProtocol {
 protocol RequestExecutableProtocol: AnyObject {
     func getRequest(
         endpoint: String,
-        completionHandler: @escaping (Result<WeatherDTO, RequestError>) -> Void
+        completionHandler: @escaping (Result<WeatherModel, RequestError>) -> Void
     )
 }
 
@@ -39,7 +39,7 @@ class APIClient: RequestExecutableProtocol {
     ///   - completionHandler: result of call
     func getRequest(
         endpoint: String,
-        completionHandler: @escaping (Result<WeatherDTO, RequestError>) -> Void
+        completionHandler: @escaping (Result<WeatherModel, RequestError>) -> Void
     ) {
         guard let url = URL(string: endpoint) else {
             return
@@ -66,7 +66,7 @@ class APIClient: RequestExecutableProtocol {
             
             do {
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(WeatherDTO.self, from: data)
+                let jsonData = try decoder.decode(WeatherModel.self, from: data)
                 completionHandler(.success(jsonData))
             } catch {
                 completionHandler(.failure(.decodeError))

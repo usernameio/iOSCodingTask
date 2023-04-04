@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentDTO: DTOModel {
+struct CurrentModel: DTOModel {
     // MARK: - Properties
-    let condition: ConditionDTO
+    var condition = ConditionModel()
 }

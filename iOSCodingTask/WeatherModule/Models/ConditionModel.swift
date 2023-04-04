@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ConditionDTO: DTOModel {
+struct ConditionModel: DTOModel {
     // MARK: - Properties
-    let icon: String?
+    var icon: String = ""
 }

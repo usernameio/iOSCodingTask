@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct DayDTO: DTOModel {
+struct SingleDayModel: DTOModel {
     // MARK: - Properties
-    var condition: ConditionDTO
-    var minTempC: Double
-    var maxTempC: Double
+    var condition = ConditionModel()
+    var minTempC = Double()
+    var maxTempC = Double()
     
     enum CodingKeys: String, CodingKey {
         case condition
         case minTempC = "mintemp_c"
         case maxTempC = "maxtemp_c"
-    } 
+    }
 }

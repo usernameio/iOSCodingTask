@@ -9,9 +9,9 @@ import Foundation
 
 typealias DTOModel = Codable
 
-struct WeatherDTO: DTOModel {
+struct WeatherModel: DTOModel {
     // MARK: - Properties
-    let location: LocationDTO
-    let current: CurrentDTO
-    let forecast: ForecastDTO 
+    var location = LocationModel()
+    var current = CurrentModel()
+    var forecast = ForecastForThreeDaysModel()
 }
