@@ -10,7 +10,7 @@ import Combine
 
 class ContentStackView: UIStackView {
     // MARK: - Properties
-    private var weatherVM = WeatherViewModel(requestExecutableProtocol: APIClient(session: URLSession.shared))
+    private var weatherVM = WeatherViewModel(forecastRepository: ForecastRepository(requestExecutor: APIClient(session: URLSession.shared)))
     private var cancellables = Set<AnyCancellable>()
     private var cityStackView = CityStackView()
     private var forecastScrollView = ForecastScrollView()

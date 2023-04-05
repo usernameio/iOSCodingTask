@@ -13,7 +13,7 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad() 
+        super.viewDidLoad()
         setupContentView(contentView: forecastStackView)
     }
 }

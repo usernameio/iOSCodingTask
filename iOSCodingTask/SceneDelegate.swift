@@ -8,7 +8,7 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-     
+    
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectOptions: UIScene.ConnectionOptions) {
@@ -23,6 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        router.push(viewModel: WeatherViewModel(requestExecutableProtocol: APIClient(session: URLSession.shared)))
+        router.push(
+            viewModel: WeatherViewModel(
+                forecastRepository: ForecastRepository(
+                    requestExecutor: APIClient(session: URLSession.shared)
+                )
+            )
+        )
     }
+    
 }

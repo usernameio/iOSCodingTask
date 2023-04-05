@@ -15,13 +15,13 @@ protocol WeatherProtocol: AnyObject {
 class WeatherViewModel: BaseViewModel, WeatherProtocol {
     //MARK: Properties
     @Published var weatherModel = WeatherModel()
-    var requestExecutableProtocol: RequestExecutableProtocol
+    var forecastRepository: ForecastRepository
     
     //MARK: Initializers
     init(
-        requestExecutableProtocol: RequestExecutableProtocol
+        forecastRepository: ForecastRepository
     ) {
-        self.requestExecutableProtocol = requestExecutableProtocol
+        self.forecastRepository = forecastRepository
         super.init(router: Router())
     }
     
@@ -44,7 +44,7 @@ class WeatherViewModel: BaseViewModel, WeatherProtocol {
     
     /// Triggers a request to server to fetch data
     func getWeatherData() {
-        requestExecutableProtocol.getRequest(endpoint: EndpointCase.getForecast.url) { [weak self] result in
+        forecastRepository.execute(urlString: EndpointCase.getForecast.url) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

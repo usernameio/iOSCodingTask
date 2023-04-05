@@ -25,13 +25,15 @@ protocol RequestExecutableProtocol: AnyObject {
 }
 
 class APIClient: RequestExecutableProtocol {
-    
+    //MARK: Properties
     private let session: URLSessionProtocol
     
+    //MARK: Initializer
     init(session: URLSessionProtocol) {
         self.session = session
     }
     
+    //MARK: Method
     /// Triggers a call to server with pre-specified type of result (Generic) and endpoint)
     /// - Parameters:
     ///   - type: Generic Type

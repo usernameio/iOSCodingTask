@@ -59,9 +59,9 @@ extension ForecastStackView {
         date: UILabel
     ) {
         guard image.superview == nil ||
-        minTempC.superview == nil ||
-        maxTempC.superview == nil ||
-        date.superview == nil else {
+                minTempC.superview == nil ||
+                maxTempC.superview == nil ||
+                date.superview == nil else {
             return
         }
         

@@ -4,9 +4,9 @@
 //
 //  Created by Ivan Vasilev on 4/4/23.
 //
- 
+
 import UIKit
- 
+
 class Router: RouterProtocol {
     
     var navController: UINavigationController?
