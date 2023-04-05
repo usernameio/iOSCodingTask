@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherViewController: BaseViewController<BaseViewModel> {
+class WeatherViewController: BaseViewController<WeatherViewModel> {
     // MARK: - Properties
     private var forecastStackView = ContentStackView()
     
@@ -15,7 +15,7 @@ class WeatherViewController: BaseViewController<BaseViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad() 
         setupContentView(contentView: forecastStackView)
-    } 
+    }
 }
 
 extension UIViewController {

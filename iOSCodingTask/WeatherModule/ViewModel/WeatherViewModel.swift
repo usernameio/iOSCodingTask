@@ -12,7 +12,7 @@ protocol WeatherProtocol: AnyObject {
     func getWeatherData()
 }
 
-class WeatherViewModel: WeatherProtocol {
+class WeatherViewModel: BaseViewModel, WeatherProtocol {
     //MARK: Properties
     @Published var weatherModel = WeatherModel()
     var requestExecutableProtocol: RequestExecutableProtocol
@@ -22,6 +22,7 @@ class WeatherViewModel: WeatherProtocol {
         requestExecutableProtocol: RequestExecutableProtocol
     ) {
         self.requestExecutableProtocol = requestExecutableProtocol
+        super.init(router: Router())
     }
     
     //MARK: Methods

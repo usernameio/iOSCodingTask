@@ -23,6 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        router.push(viewModel: BaseViewModel(router: router))
+        router.push(viewModel: WeatherViewModel(requestExecutableProtocol: APIClient(session: URLSession.shared)))
     }
 }
