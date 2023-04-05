@@ -18,7 +18,7 @@ class MockAPIClient: RequestExecutableProtocol, MockableResponse {
     
     func getRequest(
         endpoint: String,
-        completionHandler: @escaping (Result<iOSCodingTask.WeatherModel, iOSCodingTask.RequestError>) -> Void) {
+        completionHandler: @escaping (Result<iOSCodingTask.WeatherDTOModel, iOSCodingTask.RequestError>) -> Void) {
             
             guard let url = URL(string: endpoint) else {
                 return completionHandler(.failure(.decodeError))
@@ -52,7 +52,7 @@ class MockAPIClient: RequestExecutableProtocol, MockableResponse {
                 default:
                     let fileName = ListOfJSONFileNames.forecast.jsonFileName
                     do {
-                        let loadJson = try self.loadJSON(filename: fileName, modelType: WeatherModel.self)
+                        let loadJson = try self.loadJSON(filename: fileName, modelType: WeatherDTOModel.self)
                         completionHandler(.success(loadJson))
                     } catch {
                         completionHandler(.failure(.badResponse))

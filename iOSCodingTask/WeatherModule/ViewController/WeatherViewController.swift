@@ -7,15 +7,14 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController {
-    
+class WeatherViewController: BaseViewController, Coordinating {
     // MARK: - Properties
+    var coordinator: Coordinator?
     private var forecastStackView = ContentStackView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
+        super.viewDidLoad() 
         setupContentView(contentView: forecastStackView)
     }
     

@@ -6,6 +6,27 @@
 //
 
 import UIKit
+import SwiftUI
+
+class Observable<T> {
+    private var listener: ((T) -> Void)?
+    
+    var value: T {
+        didSet {
+            listener?(value)
+        }
+    }
+    
+    init(value: T) {
+        self.value = value
+    }
+    
+    func bind(_ closure: @escaping (T) -> Void) {
+        listener = closure
+        listener?(value)
+    }
+}
+
 
 class CityStackView: UIStackView {
     // MARK: - Properties
@@ -54,8 +75,8 @@ extension CityStackView {
         localTime: UILabel
     ) {
         guard city.superview == nil ||
-        country.superview == nil ||
-        localTime.superview == nil else {
+                country.superview == nil ||
+                localTime.superview == nil else {
             return
         }
         
