@@ -15,8 +15,7 @@ class WeatherViewController: BaseViewController<BaseViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad() 
         setupContentView(contentView: forecastStackView)
-    }
-    
+    } 
 }
 
 extension UIViewController {

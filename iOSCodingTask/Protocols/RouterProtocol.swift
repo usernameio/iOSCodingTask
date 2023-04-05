@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RouterProtocol {
-    func start()
+    func push(viewModel: BaseViewModel)
 }
 
 protocol RoutingProtocol {

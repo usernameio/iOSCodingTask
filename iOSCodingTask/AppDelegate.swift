@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        router.start()
+        router.push(viewModel: BaseViewModel(router: router))
         
         return true
     }
