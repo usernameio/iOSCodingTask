@@ -15,15 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let navVC = UINavigationController()
-        let coordinator = MainCoordinator()
-        coordinator.navController = navVC
+        let router = Router()
+        router.navController = navVC
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = navVC
         window.makeKeyAndVisible()
         self.window = window
         
-        coordinator.start()
+        router.start()
         
         return true
     }

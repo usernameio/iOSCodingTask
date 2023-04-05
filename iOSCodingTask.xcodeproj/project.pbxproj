@@ -20,8 +20,8 @@
 		66A5F0B529D473D6008F9562 /* SingleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A5F0B429D473D6008F9562 /* SingleDayModel.swift */; };
 		66A5F0B729D475DC008F9562 /* EndpointCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A5F0B629D475DC008F9562 /* EndpointCase.swift */; };
 		66A5F0CB29D48903008F9562 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A5F0CA29D48903008F9562 /* APIClient.swift */; };
-		66AE35BA29DC51F200D22CC9 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE35B929DC51F200D22CC9 /* Coordinator.swift */; };
-		66AE35BC29DC521D00D22CC9 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE35BB29DC521D00D22CC9 /* MainCoordinator.swift */; };
+		66AE35BA29DC51F200D22CC9 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE35B929DC51F200D22CC9 /* RouterProtocol.swift */; };
+		66AE35BC29DC521D00D22CC9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE35BB29DC521D00D22CC9 /* Router.swift */; };
 		66AE35BE29DC539300D22CC9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE35BD29DC539300D22CC9 /* SceneDelegate.swift */; };
 		66AF207329D58F5E00F41811 /* ContentStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF207229D58F5E00F41811 /* ContentStackView.swift */; };
 		66AF207729D59AA500F41811 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AF207629D59AA500F41811 /* WeatherViewController.swift */; };
@@ -40,6 +40,7 @@
 		66B5938A29D851CE00A80FDA /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5938929D851CE00A80FDA /* MockAPIClient.swift */; };
 		66B5939129D8671500A80FDA /* MockRequestExecutorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5939029D8671500A80FDA /* MockRequestExecutorTests.swift */; };
 		66B5939A29D9DD2500A80FDA /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5939929D9DD2500A80FDA /* MockURLProtocol.swift */; };
+		66C2A58F29DD61F5001AB881 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C2A58E29DD61F5001AB881 /* BaseViewModel.swift */; };
 		66F23F8229DC122800419F59 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F23F8129DC122800419F59 /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,8 +70,8 @@
 		66A5F0B429D473D6008F9562 /* SingleDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayModel.swift; sourceTree = "<group>"; };
 		66A5F0B629D475DC008F9562 /* EndpointCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointCase.swift; sourceTree = "<group>"; };
 		66A5F0CA29D48903008F9562 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		66AE35B929DC51F200D22CC9 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		66AE35BB29DC521D00D22CC9 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		66AE35B929DC51F200D22CC9 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		66AE35BB29DC521D00D22CC9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		66AE35BD29DC539300D22CC9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		66AF207229D58F5E00F41811 /* ContentStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStackView.swift; sourceTree = "<group>"; };
 		66AF207629D59AA500F41811 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		66B5938929D851CE00A80FDA /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		66B5939029D8671500A80FDA /* MockRequestExecutorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestExecutorTests.swift; sourceTree = "<group>"; };
 		66B5939929D9DD2500A80FDA /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		66C2A58E29DD61F5001AB881 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		66F23F8129DC122800419F59 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 		66A5F0C129D485AB008F9562 /* WeatherModule */ = {
 			isa = PBXGroup;
 			children = (
+				66C2A58D29DD61EA001AB881 /* Base */,
 				66A5F0C329D48622008F9562 /* ViewController */,
 				66A5F0C229D48619008F9562 /* ViewModel */,
 				66A5F0A929D462E4008F9562 /* Models */,
@@ -201,7 +204,6 @@
 			children = (
 				66AF207629D59AA500F41811 /* WeatherViewController.swift */,
 				66AF207229D58F5E00F41811 /* ContentStackView.swift */,
-				6693F21929DC71340042E564 /* BaseViewController.swift */,
 				66AF207829D5B2C300F41811 /* CityStackView.swift */,
 				66AF207C29D5DEAA00F41811 /* ForecastScrollView.swift */,
 				66AF207A29D5D75C00F41811 /* ForecastStackView.swift */,
@@ -212,8 +214,8 @@
 		66AE35B829DC51E700D22CC9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				66AE35B929DC51F200D22CC9 /* Coordinator.swift */,
-				66AE35BB29DC521D00D22CC9 /* MainCoordinator.swift */,
+				66AE35B929DC51F200D22CC9 /* RouterProtocol.swift */,
+				66AE35BB29DC521D00D22CC9 /* Router.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -256,6 +258,15 @@
 				66AF209C29D6F0CC00F41811 /* JSONFile */,
 			);
 			path = APIRequestTests;
+			sourceTree = "<group>";
+		};
+		66C2A58D29DD61EA001AB881 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				66C2A58E29DD61F5001AB881 /* BaseViewModel.swift */,
+				6693F21929DC71340042E564 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +375,7 @@
 				66AF207D29D5DEAA00F41811 /* ForecastScrollView.swift in Sources */,
 				66A5F09A29D458E0008F9562 /* iOSCodingTask.xcdatamodeld in Sources */,
 				66F23F8229DC122800419F59 /* WeatherViewModel.swift in Sources */,
+				66C2A58F29DD61F5001AB881 /* BaseViewModel.swift in Sources */,
 				66AE35BE29DC539300D22CC9 /* SceneDelegate.swift in Sources */,
 				66A5F0AF29D470C7008F9562 /* ForecastForThreeDaysModel.swift in Sources */,
 				66A5F0B129D470E8008F9562 /* ForecastDayModel.swift in Sources */,
@@ -380,8 +392,8 @@
 				6693F21A29DC71340042E564 /* BaseViewController.swift in Sources */,
 				66A5F0B329D47129008F9562 /* CurrentModel.swift in Sources */,
 				66AF207329D58F5E00F41811 /* ContentStackView.swift in Sources */,
-				66AE35BA29DC51F200D22CC9 /* Coordinator.swift in Sources */,
-				66AE35BC29DC521D00D22CC9 /* MainCoordinator.swift in Sources */,
+				66AE35BA29DC51F200D22CC9 /* RouterProtocol.swift in Sources */,
+				66AE35BC29DC521D00D22CC9 /* Router.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

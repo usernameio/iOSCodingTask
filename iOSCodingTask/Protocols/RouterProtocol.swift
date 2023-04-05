@@ -7,10 +7,10 @@
 
 import Foundation
 
-protocol Coordinator {
+protocol RouterProtocol {
     func start()
 }
 
-protocol Coordinating {
-    var coordinator: Coordinator? { get set }
+protocol RoutingProtocol {
+    var coordinator: RouterProtocol? { get set }
 }

@@ -7,6 +7,13 @@
 
 import UIKit
 
+class TableeeeeeView: UITableView {
+    
+}
+
+
+
+
 class ForecastScrollView: UIScrollView {
     // MARK: - Properties
     private var scrollContainer = UIView()

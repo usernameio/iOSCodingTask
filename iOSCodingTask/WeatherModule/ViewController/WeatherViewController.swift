@@ -7,9 +7,8 @@
 
 import UIKit
 
-class WeatherViewController: BaseViewController, Coordinating {
+class WeatherViewController: BaseViewController<BaseViewModel> {
     // MARK: - Properties
-    var coordinator: Coordinator?
     private var forecastStackView = ContentStackView()
     
     // MARK: - Lifecycle

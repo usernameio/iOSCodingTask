@@ -7,13 +7,13 @@
  
 import UIKit
  
-class MainCoordinator: Coordinator {
+class Router: RouterProtocol {
     
     var navController: UINavigationController?
+    
     func start() {
-        var vc: UIViewController & Coordinating = WeatherViewController()
-        vc.coordinator = self
-            
+        let vc: UIViewController = WeatherViewController(viewModel: BaseViewModel(router: self)) 
+                    
         navController?.navigationBar.isHidden = true
         navController?.setViewControllers([vc], animated: false)
     }
