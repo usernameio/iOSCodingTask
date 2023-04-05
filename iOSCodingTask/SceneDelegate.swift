@@ -12,13 +12,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowSecen = (scene as? UIWindowScene) else { return }
         
         let navVC = UINavigationController()
         let router = Router()
         router.navController = navVC
         
-        let window = UIWindow(frame: UIScreen.main.bounds)
+        let window = UIWindow(windowScene: windowSecen)
         window.rootViewController = navVC
         window.makeKeyAndVisible()
         self.window = window
